@@ -165,8 +165,10 @@ class SessionHelper extends AppHelper {
  */
 	protected function _render($flash) {
 		$message = $flash['message'];
-		unset($flash['message']);
-
+		if(is_string($flash['message'])){
+			unset($flash['message']);
+		}
+		
 		if ($flash['element'] === 'default') {
 			$class = 'message';
 			if (!empty($flash['params']['class'])) {
