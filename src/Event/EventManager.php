@@ -172,6 +172,11 @@ class EventManager
 
             return;
         }
+
+        if  (is_object($eventKey) &&  !($eventKey instanceof EventListenerInterface)) {
+             throw new InvalidArgumentException('Invalid arguments for EventManager::on(). Listener Object must use EventListenerInterface.');   
+        }
+                
         $argCount = func_num_args();
         if ($argCount === 2) {
             $this->_listeners[$eventKey][static::$defaultPriority][] = [
